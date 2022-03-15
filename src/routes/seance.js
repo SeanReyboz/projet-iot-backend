@@ -2,13 +2,14 @@ const express = require("express");
 const router = express.Router();
 
 // Import des différents modèles à utiliser
-const User = require("../models/User");
-const Seance = require("../models/Seance");
+const SeanceModel = require("../models/Seance");
+const Seance = require("../controllers/seance");
 
 // Voir toutes les séances
 router.get("/", async (req, res) => {
   try {
-    const allSeances = await Seance.findOne();
+    const allSeances = await SeanceModel.find({});
+    console.log(allSeances);
     res.status(200).json(allSeances);
   } catch (error) {
     res.status(500).json({ error });
@@ -18,7 +19,7 @@ router.get("/", async (req, res) => {
 // Récupérer une séance gràce à son id
 router.get("/:id", async (req, res) => {
   try {
-    const seance = await Seance.findOne(req.params.id);
+    const seance = await SeanceModel.findOne(req.params.id);
     res.status(200).json(seance);
   } catch (error) {
     res.status(500).json({ error });
@@ -29,40 +30,40 @@ router.get("/:id", async (req, res) => {
 router.post("/", (req, res) => {
   console.log(req.body);
 
-  // const { date, duration, bpm, pressions } = req.body;
-
   if (!req.body.duration) {
     res.status(400).json({
       message: "Missing required field!",
-      details: "The 'duration' is required.",
+      details: "The 'duration' field is required.",
     });
   }
 
-  const providedData = req.body;
+  if (!req.body.pressions) {
+    res.status(400).json({
+      message: "Missing required field!",
+      details: "The 'pressions' field is required.",
+    });
+  }
 
-  const finalSeance = Object.assign(
-    {
-      bpm: {
-        min: -1,
-        max: -1,
-        average: -1,
-      },
-      pressions: {
-        total: -1,
-      },
-    },
-    providedData
-  );
+  const { duration, bpm, pressions } = req.body;
 
-  // créer un nouvelle séance à partir des données reçues
-  const newSeance = new Seance(finalSeance);
+  // Créer un nouvelle séance à partir des données reçues
+  const nouvelleSeance = new Seance(bpm, duration, pressions);
 
-  res.json(newSeance);
-
-  // newSeance
-  //   .save()
-  //   .then((status) => res.status(200).json(status))
-  //   .catch((err) => res.status(500).json(err));
+  nouvelleSeance
+    .save()
+    .then(() =>
+      res.status(200).json({
+        message: "Nouvelle séance sauvegardée",
+        data: nouvelleSeance.dump(),
+      })
+    )
+    .catch((err) =>
+      res.json({
+        message:
+          "Une erreur est survenue lors de l'enregistrement de la séance",
+        errorMessage: err,
+      })
+    );
 });
 
 module.exports = router;
