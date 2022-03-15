@@ -24,4 +24,4 @@ const SeanceSchema = new Schema({
   },
 });
 
-module.exports = mongoose.model("Seance", SeanceSchema);
+module.exports = mongoose.model("seances", SeanceSchema);
