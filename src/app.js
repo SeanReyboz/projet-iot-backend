@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
+const cors = require("cors");
 
 require("dotenv/config");
 
@@ -9,6 +10,7 @@ const app = express();
 
 // Middleware pour parser le json contenu dans le body
 app.use(bodyParser.json());
+app.use(cors());
 
 // Connexion à la base de données mongodb
 mongoose.connect(process.env.MONGO_URI, {
