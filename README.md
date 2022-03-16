@@ -49,3 +49,28 @@ Pour lancer le serveur de développement
 ```bash
 yarn dev
 ```
+
+# 🚗 Routes
+
+Le serveur écoute par défaut sur l'adresse <a href="http://localhost:8888" target="_blank">http://localhost:8888</a>.
+
+### Séances
+
+Disponible à l'adress: <a href="http://localhost:8888/seances" target="_blank">http://localhost:8888/seances</a>
+
+| nom    | description                                                   | route                                                                                                   | Méthode |
+| ------ | ------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------- |
+| -      | Retourne un tableau contenant toutes les séances enregistrées | <a href="http://localhost:8888/seances" target="_blank">http://localhost:8888/seances</a>               | GET     |
+| latest | Retourne la dernière séance enregistrée                       | <a href="http://localhost:8888/seances/latest" target="_blank">http://localhost:8888/seances/latest</a> | GET     |
+
+### Statistiques
+
+Les statistiques d'utilisation de l'objet sont disponibles à l'adresse <a href="http://localhost:8888/stats" target="_blank">http://localhost:8888/stats</a>.
+
+Voici la liste des statistiques disponibles:
+
+| nom       | description                                        | route                                                                                                     |
+| --------- | -------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| bpm       | Statistiques sur le rythme cardiaque               | <a href="http://localhost:8888/stats/bpm" target="_blank">http://localhost:8888/stats/bpm</a>             |
+| pressions | Statistiques sur le nombre de pressions effectuées | <a href="http://localhost:8888/stats/pressions" target="_blank">http://localhost:8888/stats/pressions</a> |
+| duration  | Statistiques sur la durée d'utilisation de l'objet | <a href="http://localhost:8888/stats/duration" target="_blank">http://localhost:8888/stats/duration</a>   |
