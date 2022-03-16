@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
 
+const moment = require("moment");
+
 // Import des différents modèles à utiliser
 const SeanceModel = require("../models/Seance");
 const Seance = require("../controllers/seance");
@@ -8,7 +10,7 @@ const Seance = require("../controllers/seance");
 // Voir toutes les séances
 router.get("/", async (req, res) => {
   try {
-    const allSeances = await SeanceModel.find({});
+    const allSeances = await SeanceModel.aggregate([{ $sort: { date: -1 } }]);
     console.log(allSeances);
     res.status(200).json(allSeances);
   } catch (error) {
@@ -16,13 +18,24 @@ router.get("/", async (req, res) => {
   }
 });
 
-// Récupérer une séance gràce à son id
-router.get("/:id", async (req, res) => {
+// récupérer la séance la plus récente
+router.get("/latest", async (req, res) => {
   try {
-    const seance = await SeanceModel.findOne(req.params.id);
+    const [seance] = await SeanceModel.aggregate([
+      { $sort: { date: -1 } },
+      { $limit: 1 },
+    ]);
+
+    console.log(seance);
+
+    const readableDate = moment(seance.date).format("YYYY-MM-DD HH:mm");
+
+    console.log("-> Latest seance:", readableDate);
+
     res.status(200).json(seance);
   } catch (error) {
-    res.status(500).json({ error });
+    console.log(error);
+    res.status(500).json({ message: "An error occured in /latest", error });
   }
 });
 
