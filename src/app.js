@@ -22,12 +22,14 @@ mongoose.connect(process.env.MONGO_URI, {
 const helloRoute = require("./routes/hello");
 const accountsRoute = require("./routes/accounts");
 const seanceRoute = require("./routes/seance");
+const statsRoute = require("./routes/statistics");
 
 // Initialisation des routes
 
 app.use("/", helloRoute);
 app.use("/accounts", accountsRoute);
 app.use("/seances", seanceRoute);
+app.use("/stats", statsRoute);
 
 // Démarrer le serveur
 app.listen(process.env.PORT, () => {
