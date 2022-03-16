@@ -56,7 +56,7 @@ Le serveur écoute par défaut sur l'adresse <a href="http://localhost:8888" tar
 
 ### Séances
 
-Disponible à l'adress: <a href="http://localhost:8888/seances" target="_blank">http://localhost:8888/seances</a>
+Disponible à l'adresse: <a href="http://localhost:8888/seances" target="_blank">http://localhost:8888/seances</a>
 
 | nom    | description                                                   | route                                                                                                   | Méthode |
 | ------ | ------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------- |
@@ -69,8 +69,8 @@ Les statistiques d'utilisation de l'objet sont disponibles à l'adresse <a href=
 
 Voici la liste des statistiques disponibles:
 
-| nom       | description                                        | route                                                                                                     |
-| --------- | -------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
-| bpm       | Statistiques sur le rythme cardiaque               | <a href="http://localhost:8888/stats/bpm" target="_blank">http://localhost:8888/stats/bpm</a>             |
-| pressions | Statistiques sur le nombre de pressions effectuées | <a href="http://localhost:8888/stats/pressions" target="_blank">http://localhost:8888/stats/pressions</a> |
-| duration  | Statistiques sur la durée d'utilisation de l'objet | <a href="http://localhost:8888/stats/duration" target="_blank">http://localhost:8888/stats/duration</a>   |
+| nom       | description                                        | route                                                                                                     | Méthode |
+| --------- | -------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | ------- |
+| bpm       | Statistiques sur le rythme cardiaque               | <a href="http://localhost:8888/stats/bpm" target="_blank">http://localhost:8888/stats/bpm</a>             | GET     |
+| pressions | Statistiques sur le nombre de pressions effectuées | <a href="http://localhost:8888/stats/pressions" target="_blank">http://localhost:8888/stats/pressions</a> | GET     |
+| duration  | Statistiques sur la durée d'utilisation de l'objet | <a href="http://localhost:8888/stats/duration" target="_blank">http://localhost:8888/stats/duration</a>   | GET     |

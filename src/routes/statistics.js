@@ -87,7 +87,7 @@ router.get("/duration", async (req, res) => {
     });
   } catch (error) {
     res.status(500).json({
-      message: "An error occured in the stats route trying to GET /pressions",
+      message: "An error occured in the stats route trying to GET /duration",
       error,
     });
   }
